@@ -2,7 +2,7 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from google.oauth2.service_account import Credentials
 import gspread
-from utils.file_manager import *
+from sevenapps.utils.file_manager import *
 
 
 class GoogleServicesConnector:

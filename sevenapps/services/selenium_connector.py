@@ -1,5 +1,5 @@
 import time
-from utils.file_manager import *
+from sevenapps.utils.file_manager import *
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
