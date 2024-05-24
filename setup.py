@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='sevenapps-py-easy',
-    version='0.0.2',
+    version='0.0.3',
     license='MIT',
     description="Paquete creado para optimizar mi trabajo con python unificando lo más necesitado",
     author="SevenApps Studio",

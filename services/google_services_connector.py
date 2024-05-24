@@ -7,13 +7,14 @@ from utils.file_manager import *
 
 class GoogleServicesConnector:
 
-    def __init__(self, config):
+    def __init__(self, config, credentials_file_path):
+        self.credentials_file_path = credentials_file_path
         self.gspread_client = None
         self.drive_client = None
         self.config = config
         self.init_connection()
     def init_connection(self):
-        path_credentials_file = os.path.join(os.getcwd(), "testoperators-1fa4655d4cd9.json")
+        path_credentials_file = os.path.join(os.getcwd(), self.credentials_file_path)
         scopes = ["https://www.googleapis.com/auth/drive", 'https://spreadsheets.google.com/feeds']
         creds = Credentials.from_service_account_file(path_credentials_file, scopes=scopes)
         self.drive_client = build("drive", "v3", credentials=creds)
