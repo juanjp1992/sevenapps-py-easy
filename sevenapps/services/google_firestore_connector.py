@@ -18,24 +18,24 @@ class GoogleFirebaseConnector:
        setDataByPath(path: str, target: str, data: any):
            Sobrescribe los datos en un documento específico dentro de la base de datos siguiendo una ruta dada.
        """
-    def __init__(self, credentials_file_path: str):
+    def __init__(self, creds_id: str, credentials_file_path: str):
         """
         Obtiene datos de un documento específico dentro de una base de datos siguiendo una ruta dada.
         :param credentials_file_path: Ruta hasta el archivo de las credenciales, ej. base-de-datos-f7431-firebase-adminsdk-4sa5k-fi919245c12.json"
         """
         self.credentials_file_path = credentials_file_path
+        self.creds_id = creds_id
         self.db = self.init_database()
 
     def init_database(self):
-        print("[FIREBASE]: Iniciando Firebase...\n", file=sys.stdout)
-        # Inicializa el SDK de Firebase
-        cred = credentials.Certificate(self.credentials_file_path)
-        firebase_admin.initialize_app(cred)
+        print(f"[FIREBASE]: Iniciando conexión con Firestore {self.creds_id}...\n", file=sys.stdout)
 
-        # Conéctate a Firestore
-        db = firestore.client()
+        firestore_creds = firebase_admin.initialize_app(
+            credentials.Certificate(self.credentials_file_path),
+            name=self.creds_id
+        )
+        return firestore.client(app=firestore_creds)
 
-        return db
 
     def get_data_by_path(self, path: str, data_target: str):
         """
