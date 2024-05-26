@@ -36,7 +36,7 @@ class GoogleFirebaseConnector:
         )
         return firestore.client(app=firestore_creds)
 
-
+    # Enviando un path estilo así 'collection1/document1/collection2/document2' y enviando la key del interior del doc puedes recuperar datos
     def get_data_by_path(self, path: str, data_target: str):
         """
         Obtiene datos de un documento específico dentro de una base de datos siguiendo una ruta dada.
@@ -101,6 +101,54 @@ class GoogleFirebaseConnector:
         # Devolver los datos.
         return data
 
+    # Enviando un path estilo así 'collection1/document1/collection2' y enviando la key del interior del doc puedes recuperar la coleccion al completo
+    def get_all_data_from_collection(self, path: str, data_target: str):
+        """
+        Obtiene datos de todos los documentos dentro de una colección específica.
+
+        Parámetros:
+        -----------
+        path: str
+            Ruta hasta la colección de la cual queremos obtener datos, e.g., 'anime/anime-by-letter/downloads'.
+        data_target: str
+            Clave dentro de los documentos desde la cual se obtendrán los datos. Debe ser un campo válido en los documentos.
+
+        Retorna:
+        --------
+        list
+            Lista de arrays asociados con la clave 'data_target' en los documentos de la colección especificada.
+
+        Excepciones:
+        ------------
+        ValueError
+            - Si la colección no existe.
+            - Si los documentos no contienen el campo 'data_target'.
+        """
+
+        # Obtener la referencia a la colección
+        collection_ref = self.db.collection(path)
+
+        # Obtener todos los documentos de la colección
+        docs = collection_ref.stream()
+        data_list = []
+
+        for doc in docs:
+            doc_dict = doc.to_dict()
+
+            # Verificar que el documento contiene el target
+            if data_target in doc_dict:
+                data_list.append(doc_dict[data_target])
+            else:
+                print(
+                    f"[Error][get_data_from_collection()]: El documento {doc.id} no contiene el objetivo '{data_target}'.")
+
+        # Imprimimos mensaje para avisar de que se está descargando
+        print(f'[get_all_data_from_collection()]: Descargando la información de "{path}/{data_target}"...\n',
+              file=sys.stdout)
+
+        return data_list
+
+    # Aquí puedes setear datos en la base de datos
     def set_data_by_path(self, path: str, data_target: str, data: any):
         """
         Sobrescribe datos en un documento específico dentro de una base de datos siguiendo una ruta dada.
