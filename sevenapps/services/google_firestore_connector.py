@@ -116,7 +116,7 @@ class GoogleFirebaseConnector:
         Retorna:
         --------
         list
-            Lista de arrays asociados con la clave 'data_target' en los documentos de la colección especificada.
+            Lista con todos los datos asociados con la clave 'data_target' en los documentos de la colección especificada.
 
         Excepciones:
         ------------
@@ -137,7 +137,11 @@ class GoogleFirebaseConnector:
 
             # Verificar que el documento contiene el target
             if data_target in doc_dict:
-                data_list.append(doc_dict[data_target])
+                data = doc_dict[data_target]
+                if isinstance(data, list):
+                    data_list.extend(data)  # Si el dato es una lista, la extendemos
+                else:
+                    data_list.append(data)  # Si el dato no es una lista, simplemente lo añadimos
             else:
                 print(
                     f"[Error][get_data_from_collection()]: El documento {doc.id} no contiene el objetivo '{data_target}'.")
