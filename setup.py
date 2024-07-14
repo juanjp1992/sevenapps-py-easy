@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='sevenapps-py-easy',
-    version='0.0.10',
+    version='0.0.11',
     license='MIT',
     description="Paquete creado para optimizar mi trabajo con python unificando lo más necesitado",
     author="SevenApps Studio",
@@ -11,6 +11,11 @@ setup(
     url='https://github.com/juanjp1992/sevenapps-py-easy.git',
     install_requires=[
         'google-cloud-firestore',
-        'firebase-admin'
+        'firebase-admin',
+        'selenium',
+        'gspread',
+        'scp',
+        'myjdapi',
+        'PlexAPI'
     ]
 )
