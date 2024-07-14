@@ -6,7 +6,10 @@ sevenapps/__init__.py
 sevenapps/services/__init__.py
 sevenapps/services/google_firestore_connector.py
 sevenapps/services/google_services_connector.py
+sevenapps/services/my_jdownloader_connector.py
+sevenapps/services/plex_connector.py
 sevenapps/services/selenium_connector.py
+sevenapps/services/ssh_connector.py
 sevenapps/utils/__init__.py
 sevenapps/utils/data_manager.py
 sevenapps/utils/file_manager.py
