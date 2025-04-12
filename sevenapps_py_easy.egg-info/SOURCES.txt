@@ -4,6 +4,7 @@ setup.cfg
 setup.py
 sevenapps/__init__.py
 sevenapps/services/__init__.py
+sevenapps/services/chatgpt_service_connector.py
 sevenapps/services/google_firestore_connector.py
 sevenapps/services/google_services_connector.py
 sevenapps/services/my_jdownloader_connector.py

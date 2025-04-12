@@ -3,3 +3,19 @@ build/
 
 # Ignorar la carpeta dist
 dist/
+
+# Ignorar archivos temporales de Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignorar configuraciones de entornos virtuales
+venv/
+.env/
+
+# Ignorar archivos de logs
+*.log
+
+# Ignorar configuraciones de IDEs
+.vscode/
+.idea/
