@@ -8,7 +8,7 @@ long_description = (this_directory / "README.md").read_text(encoding="utf-8")
 
 setup(
     name='sevenapps-py-easy',
-    version='0.0.15',
+    version='0.0.16',
     license='MIT',
     description="Paquete creado para optimizar mi trabajo con python unificando lo más necesitado",
     author="SevenApps Studio",
@@ -22,6 +22,7 @@ setup(
         'gspread',
         'scp',
         'myjdapi',
-        'PlexAPI'
+        'PlexAPI',
+        'openai'
     ]
 )
