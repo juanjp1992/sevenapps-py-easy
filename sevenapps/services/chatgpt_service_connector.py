@@ -3,24 +3,24 @@ import requests
 class ChatGPTConnector:
     def __init__(self, api_key: str):
         self.api_key = api_key
-        self.api_url = 'https://api.openai.com/v1/completions'
+        self.api_url = 'https://api.openai.com/v1/chat/completions'  # URL correcta para modelos de chat
         self.headers = {
             'Content-Type': 'application/json',
             'Authorization': f'Bearer {self.api_key}',
         }
 
-    # Método para generar texto con ChatGPT
+    # Método para generar texto con ChatGPT usando un prompt
     def generate_text(self, prompt: str, model: str = 'gpt-3.5-turbo', max_tokens: int = 150) -> str:
         try:
             payload = {
                 'model': model,
-                'prompt': prompt,
+                'messages': [{'role': 'user', 'content': prompt}],  # Convertir el prompt en un mensaje de usuario
                 'max_tokens': max_tokens,
                 'temperature': 0.7,  # Puedes ajustar la temperatura para creatividad
             }
             response = requests.post(self.api_url, headers=self.headers, json=payload)
             response.raise_for_status()
-            generated_text = response.json()['choices'][0]['text'].strip()
+            generated_text = response.json()['choices'][0]['message']['content'].strip()
             return generated_text
         except requests.exceptions.RequestException as e:
             print(f'Error generating text: {e}')
@@ -47,10 +47,10 @@ class ChatGPTConnector:
             raise Exception('Failed to fetch API status')
 
     # Método para crear una conversación con instrucciones previas
-    def create_chat(self, messages: list[dict]) -> str:
+    def create_chat(self, messages: list[dict], model: str = 'gpt-4') -> str:
         try:
             payload = {
-                'model': 'gpt-4',  # o 'gpt-3.5-turbo' dependiendo de tu plan
+                'model': model,
                 'messages': messages,
                 'max_tokens': 500,  # número de tokens máximos por respuesta
                 'temperature': 0.7,  # puedes ajustar la temperatura para controlar la creatividad
