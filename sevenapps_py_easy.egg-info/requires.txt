@@ -5,3 +5,4 @@ gspread
 scp
 myjdapi
 PlexAPI
+openai

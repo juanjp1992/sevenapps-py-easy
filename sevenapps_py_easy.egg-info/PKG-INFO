@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: sevenapps-py-easy
-Version: 0.0.15
+Version: 0.0.18
 Summary: Paquete creado para optimizar mi trabajo con python unificando lo más necesitado
 Home-page: https://github.com/juanjp1992/sevenapps-py-easy.git
 Author: SevenApps Studio
@@ -14,6 +14,7 @@ Requires-Dist: gspread
 Requires-Dist: scp
 Requires-Dist: myjdapi
 Requires-Dist: PlexAPI
+Requires-Dist: openai
 Dynamic: author
 Dynamic: author-email
 Dynamic: home-page
